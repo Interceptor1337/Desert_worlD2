@@ -11,4 +11,4 @@ protected:
 	bool HuntFlag;
 };
 
-//lol
+//lol kek chebureck
