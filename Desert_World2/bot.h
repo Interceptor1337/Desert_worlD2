@@ -11,3 +11,4 @@ protected:
 	bool HuntFlag;
 };
 
+//lol
