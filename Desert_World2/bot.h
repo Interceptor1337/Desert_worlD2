@@ -9,4 +9,5 @@ public:
 	void walk(int playerX, int playerY);
 protected:
 	bool HuntFlag;
+	int thisIsTestingThing;
 };
