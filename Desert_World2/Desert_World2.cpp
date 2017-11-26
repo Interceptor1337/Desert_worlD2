@@ -1,6 +1,3 @@
-// Desert_World2.cpp: определяет точку входа для консольного приложения.
-//
-
 #include "stdafx.h"
 #include "GameClasses.h"
 #include <Windows.h>
@@ -8,26 +5,95 @@
 #include <list>
 #include <iterator>
 #include <conio.h>
-
-#define KEY_UP 72
-#define KEY_DOWN 80
-#define KEY_LEFT 75
-#define KEY_RIGHT 77
-#define KEY_SPACE 32
-#define KEY_EXIT 27
-#define KEY_Y 121
-#define KEY_N 110
-
-
+#include <fstream>
+#include <string>
+#include <vector>
 
 int main()
 {
-	DObject object(7, 7, '?', 1, 0);
-	Unit hm(8, 8, '?', 1, 0);
-	player me(5, 5, '@', 0, 0);
-	bot kek(6, 6, '&', 2, 0);
-	cout << me.getName() << endl << kek.getName() << endl << hm.getName() << endl << object.getName();
+ list<DObject*> mylist;
 
-    return 0;
+ ifstream fin("C:\\Users\\interceptor\\Documents\\names.txt");
+
+ string name;
+ char texture;
+ int x;
+ int y;
+
+ while (true)
+ {
+  fin >> name;
+
+  if (name == "Player")
+  {
+   fin >> texture >> x >> y;
+   x--;
+   y--;
+   Player *buff = new Player(x, y, texture, rand(), rand());
+   mylist.push_back(buff);
+  }
+  if (name == "DObject")
+  {
+   fin >> texture >> x >> y;
+   x--;
+   y--;
+   DObject *buff = new DObject(x, y, texture, rand(), rand());
+   mylist.push_back(buff);
+
+  }
+  if (name == "Unit")
+  {
+   fin >> texture >> x >> y;
+   x--;
+   y--;
+   Unit *buff = new Unit(x, y, texture, rand(), rand());
+   mylist.push_back(buff);
+  }
+  if (name == "Wall")
+  {
+   fin >> texture >> x >> y;
+   x--;
+   y--;
+   Wall *buff = new Wall(x, y, texture, rand(), rand());
+   mylist.push_back(buff);
+  }
+  if (name == "Bot")
+  {
+   fin >> texture >> x >> y;
+   x--;
+   y--;
+   Bot *buff = new Bot(x, y, texture, rand(), rand());
+   mylist.push_back(buff);
+  }
+  if (name == "stop")
+  {
+   fin.close();
+   break;
+  }
+  while (!mylist.back())
+  {
+
+  }
+ }
+
+ for (list<DObject*>::iterator i = mylist.begin(); i != mylist.end(); i++)
+ {
+  cout << (*i)->getName() << endl;
+ }
+
+ cout << endl;
+
+ for (auto i = mylist.begin(); i != mylist.end(); i++)
+ {
+  if ((*i)->getName() == "Player")
+  {
+   i = mylist.erase(i);
+  }
+ }
+
+ for (list<DObject*>::iterator i = mylist.begin(); i != mylist.end(); i++)
+ {
+  cout << (*i)->getName() << endl;
+ }
+ return 0;
 }
-
