@@ -13,7 +13,7 @@ int main()
 {
  list<DObject*> mylist;
 
- ifstream fin("C:\\Users\\interceptor\\Documents\\names.txt");
+ ifstream fin("names.txt");
 
  string name;
  char texture;
